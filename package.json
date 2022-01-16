@@ -1,0 +1,27 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "[![project-languages-used](https://img.shields.io/github/languages/count/katiechurchwell/team-profile-generator?color=important)](https://github.com/katiechurchwell/team-profile-generator)   [![project-top-language](https://img.shields.io/github/languages/top/katiechurchwell/team-profile-generator?color=blueviolet)](https://github.com/katiechurchwell/team-profile-generator)",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katiechurchwell/team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katiechurchwell/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/katiechurchwell/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.4.7"
+  }
+}
