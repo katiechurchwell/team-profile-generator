@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const writeHTML = (teams) => {
-    //build cards
+  //build cards
   let cardsStr = "";
   teams.forEach((member) => {
     switch (member.role) {
@@ -10,24 +10,42 @@ const writeHTML = (teams) => {
         // build card here
         cardsStr += `
             <div>
-                ${member.school}
-            <div>
+            <ul>
+                <li>${member.name}</li>
+                <li>${member.role}</li>
+                <li>${member.id}</li>
+                <li><a href="mailto:${member.email}">${member.email}</a></li>
+                <li>${member.school}</li>
+            </ul>
+                <div>
         `;
         break;
       case "Manager":
         // build card here
         cardsStr += `
             <div>
-                ${member.number}
+            <ul>
+                <li>${member.name}</li>
+                <li>${member.role}</li>
+                <li>${member.id}</li>
+                <li><a href="mailto:${member.email}">${member.email}</a></li>
+                <li>${member.number}</li>
+            </ul>
             <div>
         `;
         break;
       case "Engineer":
         // build card here
         cardsStr += `
-            <div>
-                ${member.github}
-            <div>
+        <div>
+        <ul>
+            <li>${member.name}</li>
+            <li>${member.role}</li>
+            <li>${member.id}</li>
+            <li><a href="mailto:${member.email}">${member.email}</a></li>
+            <li>${member.github}</li>
+        </ul>
+        <div>
         `;
         break;
       default:
@@ -43,7 +61,7 @@ const writeHTML = (teams) => {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Team Profile</title>
     </head>
     <body>
         ${cardsStr}
@@ -52,9 +70,14 @@ const writeHTML = (teams) => {
   `;
 
   //write to html and create html if it does not exist
-  fs.writeFile(path.join(__dirname,"../output/teams.html"), template, "utf8", () => {
-    console.log("done!!");
-  })
+  fs.writeFile(
+    path.join(__dirname, "../output/teams.html"),
+    template,
+    "utf8",
+    () => {
+      console.log("done!!");
+    }
+  );
 };
 
 module.exports = writeHTML;
