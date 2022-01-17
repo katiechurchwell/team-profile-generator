@@ -1,7 +1,13 @@
-const teamManger = require("./lib/team-manager");
+const Manger = require("./lib/manager");
 const inquirer = require('inquirer');
 
 
+console.log("Welcome to the Team Profile Generator");
+
+
 /* team manager */
-new teamManger().getName();
+
+
 /* then engineer or intern option menu */
+
+/* then write to page */
