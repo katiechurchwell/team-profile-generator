@@ -1,5 +1,4 @@
 // Dependencies
-const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -50,10 +49,10 @@ const questions = [
 //Add another employee check
 const checkAddAnother = () => {
   inquirer.prompt(addAnother).then((answer) => {
-    if (answer === true) {
-      addEmployee();
+    if (answer.addAnother != true) {
+      console.log("ut oh");
     } else {
-      console.log("write HTML!");
+      console.log("check");
     }
   });
 };
