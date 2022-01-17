@@ -4,6 +4,13 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 
+const addManager = () => {
+  console.log(
+    "Welcome to the Team Profile Generator! \nPlease enter the team manager."
+  );
+  addEmployee();
+};
+
 const addEmployee = () => {
   inquirer
     .prompt([
@@ -31,30 +38,23 @@ const addEmployee = () => {
         message: "Email?",
       },
       {
-        type: "confirm",
+        type: "confirm" /* does this count as a menu?*/,
         name: "addAnother",
         message: "Would you like to add another team member?",
-        default: false,
       },
     ])
-    .then((managerInfo) => {
+    .then((employeeInfo) => {
       new Employee(
-        managerInfo.name,
-        managerInfo.id,
-        managerInfo.email,
-        managerInfo.phone
+        employeeInfo.name,
+        employeeInfo.id,
+        employeeInfo.email,
+        employeeInfo.phone
       );
-      if (managerInfo.addAnother) {
-        return addAnother();
+      if (employeeInfo.addAnother) {
+        return addEmployee();
       } /* else write to HTML*/
     });
 };
 
-const addAnother = () => {
-  /* menu displaying choices */
-};
-
-addEmployee();
-
-/* Manger > menu to add engineer or intern (how does employee class play into this?)*/
+addManager();
 /* then write html */
