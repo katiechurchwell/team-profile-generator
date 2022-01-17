@@ -1,3 +1,7 @@
-const Employee = require("./lib/employee");
+const teamManger = require("./lib/team-manager");
+const inquirer = require('inquirer');
 
-new Employee().getName();
+
+/* team manager */
+new teamManger().getName();
+/* then engineer or intern option menu */
