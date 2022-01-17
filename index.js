@@ -50,9 +50,9 @@ const questions = [
 const checkAddAnother = () => {
   inquirer.prompt(addAnother).then((answer) => {
     if (answer.addAnother != true) {
-      console.log("ut oh");
+      console.log("write HTML");
     } else {
-      console.log("check");
+      addEmployee();
     }
   });
 };
@@ -117,13 +117,8 @@ const addEmployee = () => {
   let employeeQuestions = [...questions];
   employeeQuestions.push(roleQuestion);
 
-  inquirer.prompt(questions).then((employeeInfo) => {
-    if (employeeInfo.role === "Engineer") {
-      addEngineer(employeeInfo);
-    } // else implied intern
-    else {
-      addIntern(employeeInfo);
-    }
+  inquirer.prompt(employeeQuestions).then((employeeInfo) => {
+    console.log(employeeInfo);
   });
 };
 
