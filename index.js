@@ -49,15 +49,19 @@ const questions = [
 
 // Manager
 const addManager = () => {
+  var phone = {
+    type: "input",
+    name: "phone",
+    message: "Office phone number?",
+  };
+  managerQuestions = questions;
+  managerQuestions.push(phone);
+
   console.log(
     "Welcome to the Team Profile Generator! \nWho is the Team Manager?"
   );
   inquirer
-    .prompt(questions, {
-      type: "input",
-      name: "phone",
-      message: "Office phone number?",
-    })
+    .prompt(questions)
     .then((managerInfo) => {
       this.manager = new Manager(
         managerInfo.name,
@@ -65,7 +69,17 @@ const addManager = () => {
         managerInfo.email,
         managerInfo.phone
       );
-    });
+    })
+    .then(checkAddAnother);
+};
+
+const checkAddAnother = () => {
+  inquirer.prompt(addAnother).then((answer) => {
+    if (answer) {
+      addEmployee();
+    }
+  });
+  // else write HTML
 };
 
 // Employee
@@ -76,13 +90,13 @@ const addEmployee = () => {
         type: "input",
         name: "github",
         message: "GitHub username?",
-      });
-      this.engineer = new Engineer(
-        employeeInfo.name,
-        employeeInfo.id,
-        employeeInfo.email,
-        employeeInfo.github
-      );
+      }),
+        (this.engineer = new Engineer(
+          employeeInfo.name,
+          employeeInfo.id,
+          employeeInfo.email,
+          employeeInfo.github
+        ));
       console.log(employeeInfo.github);
     } // else implied intern
     else {
@@ -90,12 +104,12 @@ const addEmployee = () => {
         type: "input",
         name: "school",
         message: "School?",
-      });
-      this.intern = new Intern(
-        employeeInfo.name,
-        employeeInfo.id,
-        employeeInfo.email
-      );
+      }),
+        (this.intern = new Intern(
+          employeeInfo.name,
+          employeeInfo.id,
+          employeeInfo.email
+        ));
     }
 
     if (employeeInfo.addAnother) {
