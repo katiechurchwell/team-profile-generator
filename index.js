@@ -1,16 +1,16 @@
+const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
-const Employee = require("./lib/employee");
 const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 
-const addManager = () => {
+const addEmployee = () => {
   inquirer
     .prompt([
       {
         type: "input",
         name: "name",
-        message: "Enter Team Manager's name (required)",
+        message: "Employee name? (required)",
         validate: (nameInput) => {
           if (nameInput) {
             return true;
@@ -31,11 +31,6 @@ const addManager = () => {
         message: "Email?",
       },
       {
-        type: "input",
-        name: "phone",
-        message: "Office Number?",
-      },
-      {
         type: "confirm",
         name: "addAnother",
         message: "Would you like to add another team member?",
@@ -43,8 +38,7 @@ const addManager = () => {
       },
     ])
     .then((managerInfo) => {
-      new Manager(
-        managerInfo.role,
+      new Employee(
         managerInfo.name,
         managerInfo.id,
         managerInfo.email,
@@ -60,7 +54,7 @@ const addAnother = () => {
   /* menu displaying choices */
 };
 
-addManager();
+addEmployee();
 
 /* Manger > menu to add engineer or intern (how does employee class play into this?)*/
 /* then write html */
