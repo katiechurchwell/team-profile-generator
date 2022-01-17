@@ -35,23 +35,32 @@ const addManager = () => {
         name: "phone",
         message: "Office Number?",
       },
+      {
+        type: "confirm",
+        name: "addAnother",
+        message: "Would you like to add another team member?",
+        default: false,
+      },
     ])
-    .then((answers) => {
+    .then((managerInfo) => {
       new Manager(
-        answers.role,
-        answers.name,
-        answers.id,
-        answers.email,
-        answers.phone
+        managerInfo.role,
+        managerInfo.name,
+        managerInfo.id,
+        managerInfo.email,
+        managerInfo.phone
       );
+      if (managerInfo.addAnother) {
+        return addAnother();
+      } /* else write to HTML*/
     });
 };
 
+const addAnother = () => {
+  /* menu displaying choices */
+};
+
 addManager();
-/* then promptUser */
 
-/* team manager */
-
-/* then engineer or intern option menu */
-
-/* then write to page */
+/* Manger > menu to add engineer or intern (how does employee class play into this?)*/
+/* then write html */
