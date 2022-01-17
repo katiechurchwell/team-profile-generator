@@ -51,7 +51,6 @@ const questions = [
 const checkAddAnother = () => {
   inquirer.prompt(addAnother).then((answer) => {
     if (answer.addAnother != true) {
-      console.log("write HTML");
       writeHTML(teams);
     } else {
       addEmployee();

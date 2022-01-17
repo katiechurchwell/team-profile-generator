@@ -9,9 +9,11 @@ const writeHTML = (teams) => {
       case "Intern":
         cardsStr += `
         <div class="card">
+        <div class="card-header">
         <h2>${member.name}</h2>
+        ${member.role}
+        </div>
         <ul>
-            <li>${member.role}</li>
             <li>${member.id}</li>
             <li><a href="mailto:${member.email}">${member.email}</a></li>
             <li>${member.school}</li>
@@ -22,9 +24,11 @@ const writeHTML = (teams) => {
       case "Manager":
         cardsStr += `
         <div class="card">
+        <div class="card-header">
         <h2>${member.name}</h2>
+        ${member.role}
+        </div>
         <ul>
-            <li>${member.role}</li>
             <li>${member.id}</li>
             <li><a href="mailto:${member.email}">${member.email}</a></li>
             <li>${member.number}</li>
@@ -35,9 +39,11 @@ const writeHTML = (teams) => {
       case "Engineer":
         cardsStr += `
         <div class="card">
+        <div class="card-header">
         <h2>${member.name}</h2>
+        ${member.role}
+        </div>
         <ul>
-            <li>${member.role}</li>
             <li>${member.id}</li>
             <li><a href="mailto:${member.email}">${member.email}</a></li>
             <li><a href="https://www.github.com/${member.github}">${member.github}</a></li>
@@ -81,7 +87,7 @@ const writeHTML = (teams) => {
     template,
     "utf8",
     () => {
-      console.log("done!!");
+      console.log("Page generated!");
     }
   );
 };
