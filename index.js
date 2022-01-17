@@ -3,12 +3,15 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
+const writeHTML = require("./utils/writeHTML");
+
+const teams = [];
 
 // Question Arrays
 const addAnother = {
   type: "confirm",
   name: "addAnother",
-  message: "Would you like to add another team member?",
+  message: "Would you like to add another team member or finish building?",
 };
 
 const roleQuestion = {
@@ -23,14 +26,14 @@ const questions = [
     type: "input",
     name: "name",
     message: "Name (required):",
-    // validate: (nameInput) => {
-    //   if (nameInput) {
-    //     return true;
-    //   } else {
-    //     console.log("Please enter a name!");
-    //     return false;
-    //   }
-    // },
+    validate: (nameInput) => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log("Please enter a name!");
+        return false;
+      }
+    },
   },
   {
     type: "input",
@@ -44,18 +47,19 @@ const questions = [
   },
 ];
 
-//Add another employee check
+//Add another employee check or generate HTML
 const checkAddAnother = () => {
   inquirer.prompt(addAnother).then((answer) => {
     if (answer.addAnother != true) {
       console.log("write HTML");
+      writeHTML(teams);
     } else {
       addEmployee();
     }
   });
 };
 
-// Manager
+// Initialize builder and Manager
 const addManager = () => {
   var phone = {
     type: "input",
@@ -71,46 +75,58 @@ const addManager = () => {
   inquirer
     .prompt(managerQuestions)
     .then((managerInfo) => {
-      this.manager = new Manager(
+      const newManager = new Manager(
         managerInfo.name,
         managerInfo.id,
         managerInfo.email,
         managerInfo.phone
       );
+      teams.push(newManager);
+      checkAddAnother();
     })
-    .then(checkAddAnother);
 };
 
 //Engineer
 const addEngineer = (employeeInfo) => {
-  inquirer.prompt({
-    type: "input",
-    name: "github",
-    message: "GitHub username?",
-  }),
-    (this.engineer = new Engineer(
-      employeeInfo.name,
-      employeeInfo.id,
-      employeeInfo.email,
-      employeeInfo.github
-    ));
+  inquirer
+    .prompt({
+      type: "input",
+      name: "github",
+      message: "GitHub username?",
+    })
+    .then((engineerInfo) => {
+      const newEngineer = new Engineer(
+        employeeInfo.name,
+        employeeInfo.id,
+        employeeInfo.email,
+        engineerInfo.github
+      );
+      teams.push(newEngineer);
+      checkAddAnother();
+    });
 };
 
 //Intern
 const addIntern = (employeeInfo) => {
-  inquirer.prompt({
-    type: "input",
-    name: "school",
-    message: "School?",
-  }),
-    (this.intern = new Intern(
-      employeeInfo.name,
-      employeeInfo.id,
-      employeeInfo.email
-    ));
+  inquirer
+    .prompt({
+      type: "input",
+      name: "school",
+      message: "School?",
+    })
+    .then((internInfo) => {
+      const newIntern = new Intern(
+        employeeInfo.name,
+        employeeInfo.id,
+        employeeInfo.email,
+        internInfo.school
+      );
+      teams.push(newIntern);
+      checkAddAnother();
+    });
 };
 
-// Employee
+// Employee and Role Check
 const addEmployee = () => {
   let employeeQuestions = [...questions];
   employeeQuestions.push(roleQuestion);
@@ -125,4 +141,3 @@ const addEmployee = () => {
 };
 
 addManager();
-/* then write html */
