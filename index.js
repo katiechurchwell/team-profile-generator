@@ -5,34 +5,34 @@ const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 
 // Question Arrays
-const addAnother = [
+const addAnother =
   {
     type: "confirm",
     name: "addAnother",
     message: "Would you like to add another team member?",
-  },
-];
-const roleQuestion = [
+  };
+
+const roleQuestion =
   {
     type: "list",
     name: "role",
     message: "Employee role (required):",
     choices: ["Engineer", "Intern"],
-  },
-];
+  };
+
 const questions = [
   {
     type: "input",
     name: "name",
     message: "Name (required):",
-    validate: (nameInput) => {
-      if (nameInput) {
-        return true;
-      } else {
-        console.log("Please enter a name!");
-        return false;
-      }
-    },
+    // validate: (nameInput) => {
+    //   if (nameInput) {
+    //     return true;
+    //   } else {
+    //     console.log("Please enter a name!");
+    //     return false;
+    //   }
+    // },
   },
   {
     type: "input",
