@@ -1,8 +1,29 @@
 // const Manger = require("./lib/manager");
 const inquirer = require("inquirer");
 
-console.log("Welcome to the Team Profile Generator");
+const checkRole = () => {
+  console.log("Welcome to the Team Profile Generator");
+  inquirer
+    .prompt({
+      type: "checkbox",
+      name: "role",
+      message: "Please select employee role (required)",
+      choices: ["manager", "engineer", "employee", "intern"],
+      validate(answer) {
+        if (answer != "") {
+          return true;
+        } else {
+          console.log("Please choose a role!");
+          return false;
+        }
+      },
+    })
+    .then((answer) => {
+      console.log(answer);
+    });
+};
 
+/* if role then promptUser answers to new whatever that role is? */
 const promptUser = () => {
   inquirer.prompt([
     {
@@ -21,7 +42,7 @@ const promptUser = () => {
     {
       type: "input",
       name: "id",
-      message: "Employee id?",
+      message: "Employee ID?",
     },
     {
       type: "input",
@@ -36,7 +57,8 @@ const promptUser = () => {
   ]);
 };
 
-promptUser()
+checkRole();
+/* then promptUser */
 
 /* team manager */
 
