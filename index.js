@@ -47,6 +47,17 @@ const questions = [
   },
 ];
 
+//Add another employee check
+const checkAddAnother = () => {
+  inquirer.prompt(addAnother).then((answer) => {
+    if (answer === true) {
+      addEmployee();
+    } else {
+      console.log("write HTML!");
+    }
+  });
+};
+
 // Manager
 const addManager = () => {
   var phone = {
@@ -54,14 +65,14 @@ const addManager = () => {
     name: "phone",
     message: "Office phone number?",
   };
-  managerQuestions = questions;
+  const managerQuestions = [...questions];
   managerQuestions.push(phone);
 
   console.log(
     "Welcome to the Team Profile Generator! \nWho is the Team Manager?"
   );
   inquirer
-    .prompt(questions)
+    .prompt(managerQuestions)
     .then((managerInfo) => {
       this.manager = new Manager(
         managerInfo.name,
@@ -73,48 +84,47 @@ const addManager = () => {
     .then(checkAddAnother);
 };
 
-const checkAddAnother = () => {
-  inquirer.prompt(addAnother).then((answer) => {
-    if (answer) {
-      addEmployee();
-    }
-  });
-  // else write HTML
+//Engineer
+const addEngineer = (employeeInfo) => {
+  inquirer.prompt({
+    type: "input",
+    name: "github",
+    message: "GitHub username?",
+  }),
+    (this.engineer = new Engineer(
+      employeeInfo.name,
+      employeeInfo.id,
+      employeeInfo.email,
+      employeeInfo.github
+    ));
+};
+
+//Intern
+const addIntern = (employeeInfo) => {
+  inquirer.prompt({
+    type: "input",
+    name: "school",
+    message: "School?",
+  }),
+    (this.intern = new Intern(
+      employeeInfo.name,
+      employeeInfo.id,
+      employeeInfo.email
+    ));
 };
 
 // Employee
 const addEmployee = () => {
+  let employeeQuestions = [...questions];
+  employeeQuestions.push(roleQuestion);
+
   inquirer.prompt(questions).then((employeeInfo) => {
     if (employeeInfo.role === "Engineer") {
-      inquirer.prompt({
-        type: "input",
-        name: "github",
-        message: "GitHub username?",
-      }),
-        (this.engineer = new Engineer(
-          employeeInfo.name,
-          employeeInfo.id,
-          employeeInfo.email,
-          employeeInfo.github
-        ));
-      console.log(employeeInfo.github);
+      addEngineer(employeeInfo);
     } // else implied intern
     else {
-      inquirer.prompt({
-        type: "input",
-        name: "school",
-        message: "School?",
-      }),
-        (this.intern = new Intern(
-          employeeInfo.name,
-          employeeInfo.id,
-          employeeInfo.email
-        ));
+      addIntern(employeeInfo);
     }
-
-    if (employeeInfo.addAnother) {
-      return addEmployee();
-    } /* else write to HTML*/
   });
 };
 
