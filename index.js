@@ -1,63 +1,53 @@
-// const Manger = require("./lib/manager");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Employee = require("./lib/employee");
+const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 
-const checkRole = () => {
-  console.log("Welcome to the Team Profile Generator");
+const addManager = () => {
   inquirer
-    .prompt({
-      type: "checkbox",
-      name: "role",
-      message: "Please select employee role (required)",
-      choices: ["manager", "engineer", "employee", "intern"],
-      validate(answer) {
-        if (answer != "") {
-          return true;
-        } else {
-          console.log("Please choose a role!");
-          return false;
-        }
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Enter Team Manager's name (required)",
+        validate: (nameInput) => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log("Please enter a name!");
+            return false;
+          }
+        },
       },
-    })
-    .then((answer) => {
-      console.log(answer);
+      {
+        type: "input",
+        name: "id",
+        message: "Employee ID?",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Email?",
+      },
+      {
+        type: "input",
+        name: "phone",
+        message: "Office Number?",
+      },
+    ])
+    .then((answers) => {
+      new Manager(
+        answers.role,
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.phone
+      );
     });
 };
 
-/* if role then promptUser answers to new whatever that role is? */
-const promptUser = () => {
-  inquirer.prompt([
-    {
-      type: "input",
-      name: "name",
-      message: "Employee name? (required)",
-      validate: (nameInput) => {
-        if (nameInput) {
-          return true;
-        } else {
-          console.log("Please enter a name!");
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "id",
-      message: "Employee ID?",
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "Email?",
-    },
-    {
-      type: "input",
-      name: "phone",
-      message: "Office Number?",
-    },
-  ]);
-};
-
-checkRole();
+addManager();
 /* then promptUser */
 
 /* team manager */
