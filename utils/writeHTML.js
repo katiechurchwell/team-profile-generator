@@ -7,45 +7,42 @@ const writeHTML = (teams) => {
   teams.forEach((member) => {
     switch (member.role) {
       case "Intern":
-        // build card here
         cardsStr += `
-            <div>
-            <ul>
-                <li>${member.name}</li>
-                <li>${member.role}</li>
-                <li>${member.id}</li>
-                <li><a href="mailto:${member.email}">${member.email}</a></li>
-                <li>${member.school}</li>
-            </ul>
-                <div>
-        `;
-        break;
-      case "Manager":
-        // build card here
-        cardsStr += `
-            <div>
-            <ul>
-                <li>${member.name}</li>
-                <li>${member.role}</li>
-                <li>${member.id}</li>
-                <li><a href="mailto:${member.email}">${member.email}</a></li>
-                <li>${member.number}</li>
-            </ul>
-            <div>
-        `;
-        break;
-      case "Engineer":
-        // build card here
-        cardsStr += `
-        <div>
+        <div class="card">
+        <h2>${member.name}</h2>
         <ul>
-            <li>${member.name}</li>
             <li>${member.role}</li>
             <li>${member.id}</li>
             <li><a href="mailto:${member.email}">${member.email}</a></li>
-            <li>${member.github}</li>
+            <li>${member.school}</li>
         </ul>
-        <div>
+        </div>
+        `;
+        break;
+      case "Manager":
+        cardsStr += `
+        <div class="card">
+        <h2>${member.name}</h2>
+        <ul>
+            <li>${member.role}</li>
+            <li>${member.id}</li>
+            <li><a href="mailto:${member.email}">${member.email}</a></li>
+            <li>${member.number}</li>
+        </ul>
+        </div>
+        `;
+        break;
+      case "Engineer":
+        cardsStr += `
+        <div class="card">
+        <h2>${member.name}</h2>
+        <ul>
+            <li>${member.role}</li>
+            <li>${member.id}</li>
+            <li><a href="mailto:${member.email}">${member.email}</a></li>
+            <li><a href="https://www.github.com/${member.github}">${member.github}</a></li>
+        </ul>
+        </div>
         `;
         break;
       default:
@@ -62,9 +59,18 @@ const writeHTML = (teams) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Team Profile</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     </head>
     <body>
-        ${cardsStr}
+    <header>
+    <h1>Team Profile</h1>
+    </header>
+        <div class="container">
+            ${cardsStr}
+        </div>
     </body>
     </html>
   `;
