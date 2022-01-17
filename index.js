@@ -5,20 +5,18 @@ const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 
 // Question Arrays
-const addAnother =
-  {
-    type: "confirm",
-    name: "addAnother",
-    message: "Would you like to add another team member?",
-  };
+const addAnother = {
+  type: "confirm",
+  name: "addAnother",
+  message: "Would you like to add another team member?",
+};
 
-const roleQuestion =
-  {
-    type: "list",
-    name: "role",
-    message: "Employee role (required):",
-    choices: ["Engineer", "Intern"],
-  };
+const roleQuestion = {
+  type: "list",
+  name: "role",
+  message: "Employee role (required):",
+  choices: ["Engineer", "Intern"],
+};
 
 const questions = [
   {
@@ -118,7 +116,11 @@ const addEmployee = () => {
   employeeQuestions.push(roleQuestion);
 
   inquirer.prompt(employeeQuestions).then((employeeInfo) => {
-    console.log(employeeInfo);
+    if (employeeInfo.role === "Engineer") {
+      addEngineer(employeeInfo);
+    } else {
+      addIntern(employeeInfo);
+    }
   });
 };
 
