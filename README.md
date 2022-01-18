@@ -15,6 +15,9 @@ Command-line application that takes in information about employees and generates
 ### Example of Team Profile:
 !["Example profile page"](/images/page-example.png)
 
+### Passing Jest Tests :tada:
+!["Passing Jest tests -- yahoo!"](/images/jest-tests.gif)
+
 ## Installation
 Clone the respository to your machine. Initialize NPM (`npm init -y`) and install inquirer (`npm i inquirer`) before running.
 
