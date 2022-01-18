@@ -16,21 +16,21 @@ test("Employee email working?", () => {
 });
 
 test("getName() working?", () => {
-    const employee = new Employee("name", "id", "email");
-    expect(employee.getName()).toEqual("name");
-  });
+  const employee = new Employee("name", "id", "email");
+  expect(employee.getName()).toEqual("name");
+});
 
-  test("getId() working?", () => {
-    const employee = new Employee("name", "id", "email");
-    expect(employee.getId()).toEqual("id");
-  });
+test("getId() working?", () => {
+  const employee = new Employee("name", "id", "email");
+  expect(employee.getId()).toEqual("id");
+});
 
-  test("getEmail() working?", () => {
-    const employee = new Employee("name", "id", "email");
-    expect(employee.getEmail()).toEqual("email");
-  });
+test("getEmail() working?", () => {
+  const employee = new Employee("name", "id", "email");
+  expect(employee.getEmail()).toEqual("email");
+});
 
-  test("getRole() working?", () => {
-    const employee = new Employee("name", "id", "email");
-    expect(employee.getRole()).toEqual("Employee");
-  });
+test("getRole() working?", () => {
+  const employee = new Employee("name", "id", "email");
+  expect(employee.getRole()).toEqual("Employee");
+});
