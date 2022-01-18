@@ -19,4 +19,4 @@ Command-line application that takes in information about employees and generates
 Clone the respository to your machine. Initialize NPM (`npm init -y`) and install inquirer (`npm i inquirer`) before running.
 
 ## Usage
-Type `node.index` into the command line to initialize program. Fill out the on-screen prompts. Once finished, navigate to the `dist` folder for your new README.md file.
+Type `node.index` into the command line to initialize program. Fill out the on-screen prompts. Once finished, navigate to the `output` folder for your new README.md file.
